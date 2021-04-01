@@ -53,5 +53,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "pg", "~> 1.2"
 
-gem "sqlite3", "~> 1.4"
+####gem "sqlite3", "~> 1.4"
 gem 'font-awesome-rails'
