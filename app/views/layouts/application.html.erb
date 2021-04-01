@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smokin Restaurant</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%# Google fonts %>
+    <%# Nav bar %>
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Cedarville+Cursive|Sacramento&display=swap' %>
+    <%# Welcome block %>
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap' %>
+
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="main-content">
+      <header id="main-header">
+	  	  <div class="container navbar">
+          <div class="left-part">
+            <%= link_to "/" do %>
+              <h1 class="navbar-title"> <i class="fa fa-cutlery brand-icon" aria-hidden="true"></i>Smokin</h1>
+            <% end %>
+          </div>
+          <div class="right-part">
+            <p class="quote">Experience the Taste</p>
+	  		    <div class="tags">
+              <%= link_to "/" do %>
+                <p class="tag"> <i class="fa fa-home"></i> Home </p>
+              <% end %>
+              <% if @current_user %>
+                <%= link_to carts_path do %>
+                  <p class="tag"> <i class="fa fa-shopping-cart tag-fa" aria-hidden="true"></i> Cart </p>
+                <% end %>
+                <%= link_to orders_path do %>
+                  <p class="tag"> <i class="fa fa-files-o tag-fa" aria-hidden="true"></i> Orders </p>
+                <% end %>
+                <div class="drop-down-tags-menu">
+                  <i class="fa fa-chevron-down drop-down-arrow tag" aria-hidden="true"></i>
+                  <div class="drop-down-tags">
+                    <%= link_to "/users/#{@current_user.id}" do %>
+                      <p class="drop-down-tag"> <i class="fa fa-id-card tag-fa" aria-hidden="true"></i> Profile </p>
+                    <% end %>
+                    <% if @current_user.role == "owner" %>
+                      <%= link_to users_path do %>
+                        <p class="drop-down-tag"> <i class="fa fa-users tag-fa" aria-hidden="true"></i> Users </p>
+                      <% end %>
+                      <%= link_to change_menus_path do %>
+                        <p class="drop-down-tag"> <i class="fa fa-files-o tag-fa" aria-hidden="true"></i> Change Menu </p>
+                      <% end %>
+                      <%= link_to categories_path do %>
+                        <p class="drop-down-tag"> <i class="fa fa-list tag-fa" aria-hidden="true"></i> Categories </p>
+                      <% end %>
+                      <%= link_to reports_path do %>
+                        <p class="drop-down-tag"> <i class="fa fa-clone tag-fa" aria-hidden="true"></i> Reports </p>
+                      <% end %>
+                    <% end %>
+                    <% if @current_user.role != "customer" %>
+                      <%= link_to "/CafeAddressShow" do %>
+                        <p class="drop-down-tag"> <i class="fa fa-map-marker tag-fa" aria-hidden="true"></i> Cafe Address </p>
+                      <% end %>
+                      <%= link_to "/SocialMediaHandlesShow" do %>
+                        <p class="drop-down-tag"> <i class="fa fa-thumb-tack tag-fa" aria-hidden="true"></i> Social Media </p>
+                      <% end %>
+                    <% end %>
+                    <%= link_to "/signout",method: "delete" do %>
+                      <p class="drop-down-tag"> <i class="fa fa-sign-out tag-fa" aria-hidden="true"></i> SignOut </p>
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <%= link_to "#welcome-block" do %>
+                  <p class="tag"> <i class="fa fa-info tag-fa" aria-hidden="true"></i> About </p>
+                <% end %>
+                <%= link_to "#footer" do %>
+                  <p class="tag"> <i class="fa fa-phone tag-fa" aria-hidden="true"></i> Contact </p>
+                <% end %>
+                <% if @signUpFlag %>
+                  <%= link_to new_session_path do %>
+                    <p class="tag"> <i class="fa fa-sign-in tag-fa" aria-hidden="true"></i> SignIn </p>
+                  <% end %>
+                <% else %>
+                  <%= link_to new_user_path do %>
+                    <p class="tag"> <i class="fa fa-user-plus tag-fa" aria-hidden="true"></i> SignUp </p>
+                  <% end %>
+                <% end %>
+              <% end %>
+	  		    </div>
+          </div>
+	  	  </div>
+	    </header>
+
+      <% if flash[:error] %>
+        <p class = "flash flash-error">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <%= flash[:error] %>
+        </p>
+      <% end %>
+      <% if flash[:notice] %>
+        <p class = "flash flash-notice">
+          <i class="fa fa-check" aria-hidden="true"></i> <%= flash[:notice] %>
+        </p>
+      <% end %>
+
+      <%= yield %>
+
+    </div>
+    <section id="footer">
+      <div class="container footer-grid">
+        <div class="footer-left">
+          <h1 class="footer-title">Smokin</h1>
+          <div class="social">
+            <%= link_to @twitter_handle do %>
+              <i class="fa fa-twitter fa-2x social-icon" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to @instagram_handle do %>
+              <i class="fa fa-instagram fa-2x social-icon" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to @facebook_handle do %>
+              <i class="fa fa-facebook fa-2x social-icon" aria-hidden="true"></i>
+            <% end %>
+          </div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-right-grid">
+            <div class="info">
+              <% if @current_user == nil || @current_user.role == "customer" %>
+                <%= link_to "Careers & Franchise", new_applicant_path,class: "info-tag" %>
+              <% else %>
+                <%= link_to "Careers & Franchise", applicants_path,class: "info-tag" %>
+              <% end %>
+              <%= link_to "FAQ", questions_path, class: "info-tag" %>
+              <% if @current_user == nil || @current_user.role == "customer" %>
+                <%= link_to "Terms & Conditions", "/TermsAndConditionsDisplay",class: "info-tag" %>
+              <% else %>
+                <%= link_to "Terms & Conditions", "/TermsAndConditionsShow",class: "info-tag" %>
+              <% end %>
+            </div>
+            <div class="address">
+              <p> <%= @address_line1 %> </p>
+              <p> <%= @address_line2 %> </p>
+              <p> <%= @address_line3 %> </p>
+              <p> <%= @address_line4 %> </p>
+            </div>
+          </div>
+          <div class="mailus">
+            <%= mail_to "abhijeet218@gmail.com", "Mail Us!", cc: "clerk1@dine.com" %>
+          <div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

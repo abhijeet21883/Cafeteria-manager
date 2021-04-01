@@ -1,0 +1,28 @@
+<%= link_to menus_path do %>
+  <p class="add-more-items-button"> <i class="fa fa-cart-plus" aria-hidden="true"></i> Add More Items </h1>
+<% end %>
+<div class="order-items">
+  <% order.order_items.order(:id).each do |order_item|%>
+    <div class="order-item">
+      <p class="order-item-menu-item-name"> <%= order_item.menu_item_name %> </p>
+      <p class="order-item-price"> <i class="fa fa-inr" aria-hidden="true"></i> <%= order_item.menu_item_price %> </p>
+      <div class="menu-item-quantity">
+        <%= form_with(url: "/order_items/#{order_item.id}/decrementInCart", method: "put") do%>
+          <%= submit_tag("-", class: "decrement-button")%>
+        <% end %>
+        <p class="menu_item-quantity"><%= order_item.quantity%></p>
+        <%= form_with(url: "/order_items/#{order_item.id}/incrementInCart", method: "put") do%>
+          <%= submit_tag("+", class: "increment-button")%>
+        <% end %>
+      </div>
+      <p class="order-item-total"> <i class="fa fa-inr" aria-hidden="true"></i> <%= order_item.total %> </p>
+      <%= form_with(url: "/order_items/#{order_item.id}", method: "delete") do %>
+        <%= image_submit_tag("TrashIcon.png", class: "order-item-delete") %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<p class="pending-order-total"> <span> Total Price </span> <i class="fa fa-inr" aria-hidden="true"></i> <%= order.price %> </p>
+<%= form_with(url: "/orders/confirm", method: "post") do %>
+  <p class="confirm-button"> <i class="fa fa-check" aria-hidden="true"></i> <%= button_tag("Confirm Order", type: "submit", class: "custom-style", data: {disable_with: "Confirming.."} ) %> </p>
+<% end %>

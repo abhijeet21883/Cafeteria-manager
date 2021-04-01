@@ -1,0 +1,120 @@
+.signin-signup-block{
+  padding: 120px 0;
+  background-image: url(/gpr-image.jpg);
+  background-position: top;
+}
+
+.form-content{
+  width: 45%;
+  margin: 0 auto;
+}
+
+.tab-titles{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 30px 0;
+  font-size: 24px;
+  color: #f0d293;
+  font-weight: 600;
+  align-items: center;
+}
+
+.sign-in{
+  justify-self: end;
+}
+
+.sign-up{
+  justify-self: start;
+}
+
+.active{
+  font-size: 28px;
+  color: #d8b15c;
+  text-shadow: -1.4px 0px 1px whitesmoke;
+}
+
+.underlineHover{
+  position: relative;
+}
+
+.underlineHover:before{
+  content: '';
+  width: 0;
+  height: 2.5px;
+  background-color: #442727;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transition: .4s;
+}
+
+.underlineHover:hover:before{
+  width: 50%;
+  transform: translateX(100%);
+}
+
+.home-form-inputs{
+  padding: 12px 0 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-row-gap: 20px;
+  color: grey;
+}
+
+.home-form-input{
+  width: 300px;
+  height: 40px;
+  padding: 2px 8px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  border-style: none;
+  opacity: 1;
+}
+
+.home-form-input:focus{
+  opacity: 1;
+}
+
+.log-in:hover {
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#welcome-block{
+  background-color: grey;
+}
+
+.welcome-block-row{
+  color: blue;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  justify-items: center;
+  padding: 100px 0 100px;
+}
+
+.left-image, .right-image{
+  width: 90%;
+}
+
+.text-center{
+  display: grid;
+  justify-items: center;
+}
+
+.text-center-title{
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  color: blue;
+  padding-top: 16px;
+}
+
+.desciption{
+  text-align: center;
+  line-height: 1.4;
+}

@@ -1,0 +1,28 @@
+<section class="container">
+  <%= form_with(url: menus_path, method: "post", class: "new") do %>
+    <%= text_field_tag(:name, nil, class: "form-input", placeholder: "Enter the new menu name", autofocus: "autofocus") %>
+    <%= submit_tag("Create!", class: "margin-left-20 form-submit", data: {disable_with: "Creating.."}) %>
+  <% end %>
+  <div class="active-count">
+    <h1 class="active-menus-count"> <%= Menu.activeMenusCount %> / <%= Menu.all.count %> Active menus </h1>
+    <h1 class="active-items-count"> <%= MenuItem.activeMenuItemsCount %> / <%= MenuItem.all.count %> Active menu items </h1>
+  </div>
+  <div class="menus">
+    <% Menu.order(:id).all.each do |menu| %>
+      <div class = "menu">
+        <%= form_with(url: "/menus/#{menu.id}", method: "put") do %>
+          <% checked = menu.active %>
+          <%= check_box_tag(:active, nil, checked, class: "menu-checkbox", onclick: "this.form.submit()") %>
+        <% end %>
+        <%= link_to "#{menu.name}", "/menus/#{menu.id}", class: "menu-name menu-underlineHover" %>
+        <p class="menu-items-count"> <%= menu.menuItemsCheckedCount %>/<%= menu.menu_items.count %> items </p>
+        <div class="edit-delete-block">
+          <%= form_with(url: "/menus/#{menu.id}", method: "delete") do %>
+            <%= image_submit_tag("TrashIcon.png", class: "activeMenus-trash-icon") %>
+          <% end %>
+          <p class="activeMenus-edit-icon"> <%= link_to ('<i class="fa fa-pencil"></i>').html_safe, "/menus/#{menu.id}/edit" %> </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

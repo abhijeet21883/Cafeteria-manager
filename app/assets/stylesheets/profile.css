@@ -1,0 +1,65 @@
+.profile-content{
+  width: 40%;
+  margin: 40px auto 0;
+  padding: 30px 30px;
+  font-size: 20px;
+  color: #640819;
+  display: grid;
+  grid-row-gap: 10px;
+}
+
+.profile-flex{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.profile-role{
+  color: #3f3f44;
+  font-weight: 600;
+  font-size: 22px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.profile-address{
+  width: 65%;
+  line-height: 1.5;
+  margin: 14px 0;
+}
+
+.profile-form{
+  margin: 30px 0 20px;
+}
+
+.profile-edit-address{
+  padding: 4px 0 0 8px;
+}
+
+.update-profile-edit-icon{
+  margin-top: 30px;
+  font-size: 24px;
+  justify-self: center;
+}
+
+.update-profile-edit-icon:hover{
+  font-size: 25px;
+  color: #3f3f44;
+}
+
+.update-password-block{
+  margin: 20px 0 30px;
+  display: grid;
+  grid-row-gap: 10px;
+}
+
+.update-password-guide-text{
+  font-size: 17px;
+}
+
+.update-profile-submit{
+  width: 110px;
+  height: 35px;
+  font-weight: 600;
+  justify-self: center;
+}

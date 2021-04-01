@@ -1,0 +1,17 @@
+<%= link_to change_menus_path do %>
+  <p class="back-button"> <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> All Menus </h1>
+<% end %>
+<section class="add-menu-item">
+  <%= form_with(url: menu_items_path, method: "post", class: "add-menu-item-left") do %>
+    <%= text_field_tag(:name, nil, class: "form-input", placeholder: "Enter the new item name", autofocus: "autofocus") %>
+    <%= text_area_tag(:description, nil, size: "25x4", class: "add-menu-item-text-area", placeholder: "Item description") %>
+    <%= select_tag nil, options_for_select(categories), class: "category-dropdown", name: "category_id" %>
+    <%= number_field(nil, nil, class: "form-input", placeholder: "Enter Price", name: "price", min: 1) %>
+    <%= submit_tag("Add Item!", class: "form-submit", data: {disable_with: "Adding.."}) %>
+  <% end %>
+  <section class="add-menu-item-right">
+    <h1 class = "menu-content-menu-name"> <%= menu.name %> </h1>
+    <p class = "menu-content-item-count"> <%= menu.menuItemsCheckedCount %> / <%= menu.menu_items.count %> </p>
+    <%= render partial: "display_menu_items", locals: { menu: menu } %>
+  </section>
+</section>

@@ -1,0 +1,19 @@
+<div class="signin-signup-block">
+  <div class="form-content">
+    <%= render partial: "home/signin-signup", locals: { signUpFlag: @signUpFlag } %>
+  </div>
+</div>
+
+<section  id="welcome-block">
+  <div class="container">
+    <div class="welcome-block-row">
+      <%= image_tag("left-image.jpg", class: "left-image",alt: "left-image") %>
+      <div class="text-center">
+        <h1 class="text-center-title">ART OF FOOD</h1>
+        <span class="welcome">Welcome to Smokin</span>
+        <p class="desciption">Smokin is  a team work of  Smokin Restaurant Cafe, We are excited to announce yet another new restaurant. We hope like previous one; this will also be a great support to you</p>
+      </div>
+      <%= image_tag("right-image.jpg", class: "right-image",alt: "left-image") %>
+    </div>
+  </div>
+</section>

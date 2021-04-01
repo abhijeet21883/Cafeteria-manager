@@ -1,0 +1,15 @@
+<% if Applicant.category("franchise").count > 0 %>
+  <%= render partial: "applicants", locals: { option: "franchise" } %>
+<% end %>
+
+<% if Applicant.category("clerk").count > 0 %>
+  <%= render partial: "applicants", locals: { option: "clerk" } %>
+<% end %>
+
+<% if Applicant.category("deliveryBoy").count > 0 %>
+  <%= render partial: "applicants", locals: { option: "deliveryBoy" } %>
+<% end %>
+
+<% if Applicant.category("cleaner").count > 0 %>
+  <%= render partial: "applicants", locals: { option: "cleaner" } %>
+<% end %>
